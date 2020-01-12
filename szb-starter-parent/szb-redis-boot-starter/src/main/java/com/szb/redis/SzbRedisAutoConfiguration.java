@@ -45,7 +45,6 @@ public class SzbRedisAutoConfiguration {
         redisTemplate.setValueSerializer(valueSerializer);
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
 
-
 //        RedisSerializationContext<String, Object> serializationContext = RedisSerializationContext
 //                .<String, Object>newSerializationContext()
 //                .key(keySerializer)
