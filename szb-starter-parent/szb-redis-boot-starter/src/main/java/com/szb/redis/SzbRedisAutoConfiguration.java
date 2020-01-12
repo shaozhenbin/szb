@@ -8,7 +8,10 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.*;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableConfigurationProperties({SzbRedisProperties.class})
@@ -41,6 +44,7 @@ public class SzbRedisAutoConfiguration {
         redisTemplate.setHashValueSerializer(valueSerializer);
         redisTemplate.setValueSerializer(valueSerializer);
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
+
 
 //        RedisSerializationContext<String, Object> serializationContext = RedisSerializationContext
 //                .<String, Object>newSerializationContext()
