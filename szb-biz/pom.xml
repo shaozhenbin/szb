@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>jpa-querydsl-demo</module>
+        <module>szb-jpa-querydsl-demo</module>
     </modules>
 
     <dependencyManagement>
