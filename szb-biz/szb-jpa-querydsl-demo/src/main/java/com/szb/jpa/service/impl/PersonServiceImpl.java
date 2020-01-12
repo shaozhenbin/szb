@@ -2,6 +2,7 @@ package com.szb.jpa.service.impl;
 
 import com.szb.jpa.cache.manager.PersonCacheManager;
 import com.szb.jpa.domain.Person;
+import com.szb.jpa.domain.QPerson;
 import com.szb.jpa.repository.PersonRepository;
 import com.szb.jpa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person findByCode(String code) {
-
-        return null;
+        QPerson qPerson = QPerson.person;
+        return personRepository.findOne(qPerson.code.eq(code))
+                .orElse(null);
     }
 }

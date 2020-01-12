@@ -35,4 +35,10 @@ public class PersonServiceTest {
         personService.save(person);
     }
 
+    @Test
+    public void findByCode() {
+        Person person = personService.findByCode("309");
+        log.debug("person--------> {}", person.toString());
+    }
+
 }
