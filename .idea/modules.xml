@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/szb-biz/spring-data-jpa-demo/spring-data-jpa-demo.iml" filepath="$PROJECT_DIR$/szb-biz/spring-data-jpa-demo/spring-data-jpa-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb.iml" filepath="$PROJECT_DIR$/szb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb-biz/szb-biz.iml" filepath="$PROJECT_DIR$/szb-biz/szb-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb-bom/szb-bom.iml" filepath="$PROJECT_DIR$/szb-bom/szb-bom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb-starter-parent/szb-jpa-querydsl-boot-starter/szbjpaquerydslbootstarter.iml" filepath="$PROJECT_DIR$/szb-starter-parent/szb-jpa-querydsl-boot-starter/szbjpaquerydslbootstarter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb-starter-parent/szb-redis-boot-starter/szbredisbootstarter.iml" filepath="$PROJECT_DIR$/szb-starter-parent/szb-redis-boot-starter/szbredisbootstarter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/szb-starter-parent/szbstarterparent.iml" filepath="$PROJECT_DIR$/szb-starter-parent/szbstarterparent.iml" />
+    </modules>
+  </component>
+</project>

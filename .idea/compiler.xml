@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="szbjpaquerydslbootstarter" />
+        <module name="szbredisbootstarter" />
+        <module name="spring-data-jpa-demo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-data-jpa-demo" target="8" />
+      <module name="szb" target="1.5" />
+      <module name="szb-biz" target="1.5" />
+      <module name="szb-bom" target="1.8" />
+      <module name="szbjpaquerydslbootstarter" target="8" />
+      <module name="szbredisbootstarter" target="8" />
+      <module name="szbstarterparent" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="szb" options="" />
+      <module name="szb-biz" options="" />
+      <module name="szb-bom" options="" />
+    </option>
+  </component>
+</project>
