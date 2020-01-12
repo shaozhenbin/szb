@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-data-jpa-demo</module>
+        <module>jpa-querydsl-demo</module>
     </modules>
 
     <dependencyManagement>
