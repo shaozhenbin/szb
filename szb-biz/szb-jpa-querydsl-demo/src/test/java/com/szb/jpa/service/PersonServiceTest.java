@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * @ClassName PersonServiceTest
  * @Description TODO
@@ -39,6 +41,14 @@ public class PersonServiceTest {
     public void findByCode() {
         Person person = personService.findByCode("309");
         log.debug("person--------> {}", person.toString());
+    }
+
+    @Test
+    public void getPerson() {
+        List<Person> list = personService.getPerson("309", "209");
+        for (Person person : list) {
+            log.debug("person--------> {}", person.toString());
+        }
     }
 
 }

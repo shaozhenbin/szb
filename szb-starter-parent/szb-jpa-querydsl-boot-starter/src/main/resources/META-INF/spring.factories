@@ -1,2 +1,2 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.szb.jpa.querydsl.QuerydslConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.szb.jpa.querydsl.QuerydslJpaConfig

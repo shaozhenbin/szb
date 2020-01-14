@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @Version 1.0
  **/
 @Configuration
-public class QuerydslConfig {
+public class QuerydslJpaConfig {
 
 
     @Autowired

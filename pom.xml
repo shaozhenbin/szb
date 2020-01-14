@@ -12,6 +12,7 @@
         <module>szb-bom</module>
         <module>szb-biz</module>
         <module>szb-starter-parent</module>
+        <module>szb-ms</module>
     </modules>
 
     <distributionManagement>

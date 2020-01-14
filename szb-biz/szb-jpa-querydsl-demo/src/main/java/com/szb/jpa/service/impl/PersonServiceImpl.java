@@ -1,5 +1,8 @@
 package com.szb.jpa.service.impl;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.szb.jpa.cache.manager.PersonCacheManager;
 import com.szb.jpa.domain.Person;
 import com.szb.jpa.domain.QPerson;
@@ -7,6 +10,8 @@ import com.szb.jpa.repository.PersonRepository;
 import com.szb.jpa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName PersonServiceImpl
@@ -19,11 +24,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class PersonServiceImpl implements PersonService {
 
+    private JPAQueryFactory queryFactory;
     private PersonRepository personRepository;
     private PersonCacheManager personCacheManager;
 
-    public PersonServiceImpl(PersonRepository personRepository,
+    public PersonServiceImpl(JPAQueryFactory queryFactory,
+                             PersonRepository personRepository,
                              PersonCacheManager personCacheManager) {
+        this.queryFactory = queryFactory;
         this.personRepository = personRepository;
         this.personCacheManager = personCacheManager;
     }
@@ -38,8 +46,23 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person findByCode(String code) {
-        QPerson qPerson = QPerson.person;
-        return personRepository.findOne(qPerson.code.eq(code))
+        QPerson person = QPerson.person;
+        return personRepository.findOne(person.code.eq(code))
                 .orElse(null);
     }
+
+    @Override
+    public List<Person> getPerson(String... codes) {
+        log.debug("-----------getPerson------------");
+        QPerson person = QPerson.person;
+        JPAQuery<Person> query = queryFactory.selectFrom(person);
+        BooleanBuilder builder = new BooleanBuilder();
+        for (String code : codes) {
+            builder.or(person.code.eq(code));
+        }
+        query.where(builder);
+        return query.fetch();
+    }
+
+
 }
