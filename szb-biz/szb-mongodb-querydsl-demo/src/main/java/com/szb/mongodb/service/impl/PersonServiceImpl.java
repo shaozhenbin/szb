@@ -6,6 +6,7 @@ import com.szb.mongodb.domain.QPerson;
 import com.szb.mongodb.queryfactory.PersonQueryFactory;
 import com.szb.mongodb.repository.IPersonRepository;
 import com.szb.mongodb.service.PersonService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * @Version 1.0
  **/
 @Service
+@Slf4j
 public class PersonServiceImpl implements PersonService {
 
     private final IPersonRepository personRepository;
@@ -39,6 +41,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Address> getAddress(String code) {
+
+        QPerson person = QPerson.person;
+        Person p = personQueryFactory.selectFrom(person).where(person.code.eq(code))
+                .fetchFirst(person.name, person.addressSet);
+        log.debug("p ----------> {}", p.toString());
         return null;
     }
 

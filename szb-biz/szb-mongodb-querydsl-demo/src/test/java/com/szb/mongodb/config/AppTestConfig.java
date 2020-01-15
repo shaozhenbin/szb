@@ -50,6 +50,8 @@ public class AppTestConfig extends AbstractMongoConfiguration implements Environ
 //		build.maxWaitTime(60* 1000);
         MongoClientOptions options = build.build();
         log.debug("mongodb连接成功--------------------->{}", "Connect to database successfully");
+
+
         return new MongoClient(serverAddress, credential, options);
     }
 

@@ -1,6 +1,6 @@
 package com.szb.mongodb.service;
 
-import com.szb.mongodb.config.AppTestConfig;
+import com.szb.mongodb.config.AppConfig;
 import com.szb.mongodb.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppTestConfig.class})
+@ContextConfiguration(classes = {AppConfig.class})
 @Slf4j
 public class PersonServiceTest {
 
@@ -42,6 +42,11 @@ public class PersonServiceTest {
         list.stream().forEach(x -> {
             log.debug("person------------>{}", x.toString());
         });
+    }
+
+    @Test
+    public void getAddress() {
+        personService.getAddress("001");
     }
 
 }
