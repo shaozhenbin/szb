@@ -9,14 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * @ClassName QuerydslConfig
+ * @ClassName QueryDslConfig
  * @Description TODO
  * @Author szb
  * @Date 2020/1/11 14:41
  * @Version 1.0
  **/
 @Configuration
-public class QuerydslJpaConfig {
+public class QueryDslJpaConfig {
 
 
     @Autowired
@@ -27,6 +27,5 @@ public class QuerydslJpaConfig {
     public JPAQueryFactory queryFactory() {
         return new JPAQueryFactory(entityManager);
     }
-
 
 }

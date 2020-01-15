@@ -1,2 +1,2 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.szb.mongodb.querydsl.QuerydslMongodbAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.szb.mongodb.querydsl.QueryDslMongoConfig

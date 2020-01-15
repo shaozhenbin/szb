@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ClassName querydslMongodbConfig
+ * @ClassName queryDslMongodbConfig
  * @Description TODO
  * @Author szb
  * @Date 2020/1/14 11:29
@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 @EnableConfigurationProperties({MongodbProperties.class})
-public class QuerydslMongodbAutoConfig {
+public class QueryDslMongoConfig {
 
     @Bean
     public MongoClient mongoClient(MongodbProperties mongodbProperties) {
