@@ -30,7 +30,7 @@ public class PersonServiceTest {
     public void save() {
 
         Person person = Person.builder()
-                .code("309")
+                .code("609")
                 .name("zhangsan")
                 .build();
 
