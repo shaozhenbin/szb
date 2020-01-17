@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>szb-mongodb-querydsl-demo</artifactId>
+    <artifactId>szb-mongodb-demo</artifactId>
 
     <dependencies>
 

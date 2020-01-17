@@ -21,8 +21,9 @@
     </properties>
 
     <modules>
-        <module>szb-jpa-querydsl-demo</module>
-        <module>szb-mongodb-querydsl-demo</module>
+        <module>szb-jpa-demo</module>
+        <module>szb-mongodb-demo</module>
+        <module>szb-redis-demo</module>
     </modules>
 
     <dependencyManagement>
