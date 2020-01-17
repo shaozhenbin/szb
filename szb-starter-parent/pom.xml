@@ -15,8 +15,8 @@
 
     <modules>
         <module>szb-redis-boot-starter</module>
-        <module>szb-jpa-querydsl-boot-starter</module>
-        <module>szb-mongodb-querydsl-starter</module>
+        <module>szb-mongodb-boot-starter</module>
+        <module>szb-jpa-boot-starter</module>
     </modules>
 
 
