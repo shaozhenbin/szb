@@ -13,6 +13,7 @@
         <module>szb-biz</module>
         <module>szb-starter-parent</module>
         <module>szb-ms</module>
+        <module>szb-test</module>
     </modules>
 
     <distributionManagement>
