@@ -22,6 +22,7 @@ public class BinlogTest {
 
     public static void main(String[] args) throws IOException {
         BinaryLogClient binaryLogClient = new BinaryLogClient(HOST_NAME, PORT, SCHEMA, USER_NAME, PASSWORD);
+//        binaryLogClient.set
 
         BinlogCache binlogCache = new BinlogCache(HOST_NAME, PORT, USER_NAME, PASSWORD,"ptest");
 
@@ -35,7 +36,5 @@ public class BinlogTest {
                 cachedThreadPool, forceSingleThreadPools));
         binaryLogClient.connect();
     }
-
-
 
 }

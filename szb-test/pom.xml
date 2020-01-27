@@ -15,6 +15,7 @@
 
     <modules>
         <module>szb-mysql-binlog-connector-java-test</module>
+        <module>szb-unify-logging-test</module>
     </modules>
 
     <dependencyManagement>
