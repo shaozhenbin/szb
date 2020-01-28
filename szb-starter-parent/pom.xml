@@ -17,6 +17,8 @@
         <module>szb-redis-boot-starter</module>
         <module>szb-mongodb-boot-starter</module>
         <module>szb-jpa-boot-starter</module>
+        <module>szb-async-task-boot-starter</module>
+        <module>szb-logging-boot-starter</module>
     </modules>
 
 

@@ -24,6 +24,8 @@
         <module>szb-jpa-demo</module>
         <module>szb-mongodb-demo</module>
         <module>szb-redis-demo</module>
+        <module>szb-logging-demo</module>
+        <module>szb-async-task-demo</module>
     </modules>
 
     <dependencyManagement>
