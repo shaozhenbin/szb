@@ -1,5 +1,6 @@
 package com.szb.logging;
 
+import com.szb.utils.MDCUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -19,23 +20,20 @@ import java.util.UUID;
  * @Version 1.0
  **/
 @Component
-public class LogInterceptor implements HandlerInterceptor {
+public class LogMdcInterceptor implements HandlerInterceptor {
 
-    private static final Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogMdcInterceptor.class);
+    private static final String REQUEST_KEY = "requestId";
 
-
-    private static final String SESSION_KEY = "requestId";
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         logger.debug("-------preHandle---------");
         StringBuilder sb = new StringBuilder();
-        String url = sb.append(request.getServerName()).append(":").append(request.getServerPort()).append(request.getServletPath()).toString();
-        // 设置SessionId
+        //获取token
         String token = UUID.randomUUID().toString().replace("-", "");
-        logger.debug("token------------{}", url);
-        MDCUtil.put(SESSION_KEY, url + "-" + token);
-
+        logger.debug("token------------{}", token);
+        MDCUtil.put(REQUEST_KEY, token);
         return true;
     }
 
@@ -49,9 +47,9 @@ public class LogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                 Object o, Exception e) throws Exception {
         logger.debug("-------afterCompletion---------");
-        logger.debug("MDC --------> {}", MDC.get(SESSION_KEY));
-        // 删除SessionId
-        MDCUtil.remove(SESSION_KEY);
+        logger.debug("MDC --------> {}", MDC.get(REQUEST_KEY));
+        // 删除REQUESTID_KEY
+        MDCUtil.remove(REQUEST_KEY);
     }
 
 }

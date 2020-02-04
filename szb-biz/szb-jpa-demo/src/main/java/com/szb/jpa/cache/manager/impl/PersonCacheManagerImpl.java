@@ -5,7 +5,10 @@ import com.szb.jpa.domain.Person;
 import com.szb.redis.SzbRedisUtil;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName PersonCaheManagerImpl
@@ -29,5 +32,15 @@ public class PersonCacheManagerImpl implements PersonCacheManager {
     public void cachePersonDetails(Person person) {
         redisUtilPerson.putMap(TABLE_PERSON, PERSON + person.getCode(), person);
         redisUtilPerson.setExpire(TABLE_PERSON, 1, TimeUnit.DAYS);
+    }
+
+    @Override
+    public Person getPerson(String code) {
+        return redisUtilPerson.getMapAsSingleEntry(TABLE_PERSON, PERSON + code);
+    }
+
+    @Override
+    public List<Person> getAllCachePerson() {
+        return redisUtilPerson.getMapAsAll(TABLE_PERSON).values().stream().collect(Collectors.toList());
     }
 }

@@ -16,16 +16,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  **/
 @Configuration
 @EnableWebMvc
-public class LogConfiguration implements WebMvcConfigurer {
+public class CustomInterceptorConfiguration implements WebMvcConfigurer {
 
-    private static final Logger logger = LoggerFactory.getLogger(LogConfiguration.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomInterceptorConfiguration.class);
 
     /**
      * 自己定义的拦截器类
      * @return
      */
-    LogInterceptor logInterceptor() {
-        return new LogInterceptor();
+    LogMdcInterceptor logInterceptor() {
+        return new LogMdcInterceptor();
     }
 
     /**

@@ -3,6 +3,9 @@ package com.szb.jpa.service.impl;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.sun.scenario.effect.impl.prism.ps.PPSBlend_ADDPeer;
+import com.szb.jpa.async.event.PersonEvent;
+import com.szb.jpa.async.predicate.PersonPredicate;
 import com.szb.jpa.cache.manager.PersonCacheManager;
 import com.szb.jpa.domain.Person;
 import com.szb.jpa.domain.QPerson;
@@ -47,8 +50,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person findByCode(String code) {
         QPerson person = QPerson.person;
-        return personRepository.findOne(person.code.eq(code))
-                .orElse(null);
+        Person p = personCacheManager.getPerson(code);
+        if(p == null) {
+            p = personRepository.findOne(person.code.eq(code))
+                    .orElse(null);
+        }
+        return p;
     }
 
     @Override
@@ -62,6 +69,31 @@ public class PersonServiceImpl implements PersonService {
         }
         query.where(builder);
         return query.fetch();
+    }
+
+    @Override
+    public void savePerson(Person person) {
+        log.debug("-------savePerson--------");
+
+        PersonEvent personEvent = PersonEvent.builder()
+                .person(person).build();
+        personEvent.setActionType(PersonPredicate.ASYNC_EVENT_01);
+        log.debug("-------add async event01----------");
+        person.addAsyncEvent(personEvent);
+
+        PersonEvent personEvent02 = PersonEvent.builder()
+                .person(person).build();
+        personEvent02.setActionType(PersonPredicate.ASYNC_EVENT_02);
+        log.debug("-------add async event02----------");
+        person.addAsyncEvent(personEvent02);
+
+        personRepository.save(person);
+        log.debug("-------savePerson--------success");
+    }
+
+    @Override
+    public List<Person> getAllCachePerson() {
+        return personCacheManager.getAllCachePerson();
     }
 
 

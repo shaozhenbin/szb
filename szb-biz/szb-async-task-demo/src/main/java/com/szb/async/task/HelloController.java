@@ -23,9 +23,6 @@ public class HelloController {
         this.asyncBusiness = asyncBusiness;
     }
 
-    /*
-   1.异步线程
-    */
     @GetMapping("/sayhello")
     public String sayHello() {
         logger.debug("-----------say Hello------------");

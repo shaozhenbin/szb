@@ -1,5 +1,15 @@
 package com.szb.redis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -8,10 +18,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.serializer.*;
 
 @Configuration
 @EnableConfigurationProperties({SzbRedisProperties.class})
@@ -38,7 +45,21 @@ public class SzbRedisAutoConfiguration {
                                                                   LettuceConnectionFactory lettuceConnectionFactory) {
         final RedisTemplate<String,Object> redisTemplate = new RedisTemplate<String,Object>();
         RedisSerializer<String> keySerializer = new StringRedisSerializer();
-        RedisSerializer<Object> valueSerializer = new Jackson2JsonRedisSerializer(Object.class);
+
+        // 使用Jackson2JsonRedisSerialize 替换默认序列化(默认采用的是JDK序列化)
+        Jackson2JsonRedisSerializer<Object> valueSerializer =
+                new Jackson2JsonRedisSerializer<>(Object.class);
+
+        final PolymorphicTypeValidator ptv =
+                BasicPolymorphicTypeValidator.builder()
+                        .allowIfBaseType(Object.class)
+                        .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+        valueSerializer.setObjectMapper(objectMapper);
+
         redisTemplate.setKeySerializer(keySerializer);
         redisTemplate.setHashKeySerializer(new GenericToStringSerializer<Object>(Object.class));
         redisTemplate.setHashValueSerializer(valueSerializer);

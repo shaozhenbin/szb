@@ -1,4 +1,4 @@
-package com.szb.logging;
+package com.szb.utils;
 
 import org.slf4j.MDC;
 

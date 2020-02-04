@@ -14,6 +14,7 @@
         <module>szb-starter-parent</module>
         <module>szb-ms</module>
         <module>szb-test</module>
+        <module>szb-common</module>
     </modules>
 
     <distributionManagement>

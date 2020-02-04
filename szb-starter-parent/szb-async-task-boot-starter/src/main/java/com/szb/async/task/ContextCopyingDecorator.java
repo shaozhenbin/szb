@@ -1,8 +1,7 @@
 package com.szb.async.task;
 
+import com.szb.utils.MDCUtil;
 import org.springframework.core.task.TaskDecorator;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.Map;
 
@@ -22,10 +21,10 @@ public class ContextCopyingDecorator implements TaskDecorator {
         // 保存当前线程的MDC值
         this.map = MDCUtil.getCopyOfContextMap();
         // 上下文线程间传递
-        RequestAttributes context = RequestContextHolder.currentRequestAttributes();
+//        RequestAttributes context = RequestContextHolder.currentRequestAttributes();
         return () -> {
             try {
-                RequestContextHolder.setRequestAttributes(context);
+//                RequestContextHolder.setRequestAttributes(context);
                 // 传入已保存的MDC值
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     MDCUtil.put(entry.getKey(), entry.getValue());
@@ -37,7 +36,7 @@ public class ContextCopyingDecorator implements TaskDecorator {
                 for (Map.Entry<String, String> entry : map.entrySet()) {
                     MDCUtil.remove(entry.getKey());
                 }
-                RequestContextHolder.resetRequestAttributes();
+//                RequestContextHolder.resetRequestAttributes();
             }
         };
     }

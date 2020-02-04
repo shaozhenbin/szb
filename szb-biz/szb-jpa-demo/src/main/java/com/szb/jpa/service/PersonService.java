@@ -12,4 +12,7 @@ public interface PersonService {
 
     List<Person> getPerson(String... code);
 
+    void savePerson(Person person);
+
+    List<Person> getAllCachePerson();
 }

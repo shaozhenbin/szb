@@ -12,6 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -28,6 +29,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"com.szb.*"})
 @PropertySource("classpath:application.properties")
+@EnableAsync
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.szb.jpa.repository"},
     repositoryFactoryBeanClass = SzbJpaRepositoryFactoryBean.class)
@@ -58,6 +60,7 @@ public class AppConfig implements EnvironmentAware {
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");//validate,create,create-drop
         jpaProperties.setProperty("hibernate.format_sql", "true");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(ds);
         emf.setPackagesToScan("com.szb.jpa.domain");

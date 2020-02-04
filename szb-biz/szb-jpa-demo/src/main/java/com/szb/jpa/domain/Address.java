@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @ClassName Address
@@ -19,12 +20,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Address {
-
-    @Id
-    @GeneratedValue(generator = "idGenerator")
-    @GenericGenerator(name = "idGenerator", strategy = "uuid")
-    private String id;
+public class Address extends BasicEntity implements Serializable {
 
     @Column(name = "CITY", length = 20, nullable = false)
     private String city;

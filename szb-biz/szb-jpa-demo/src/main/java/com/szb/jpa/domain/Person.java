@@ -1,10 +1,14 @@
 package com.szb.jpa.domain;
 
+import com.szb.jpa.async.event.PersonEvent;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.domain.DomainEvents;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName Person
@@ -21,12 +25,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Person implements Serializable {
-
-    @Id
-    @GeneratedValue(generator = "idGenerator")
-    @GenericGenerator(name = "idGenerator", strategy = "uuid")
-    private String id;
+public class Person extends BasicEntity implements Serializable {
 
     @Column(name = "CODE", unique = true, nullable = false, length = 32)
     private String code;
@@ -45,4 +44,5 @@ public class Person implements Serializable {
 //            CascadeType.ALL 级联所有权限
     }, fetch = FetchType.LAZY)
     private Address address;
+
 }

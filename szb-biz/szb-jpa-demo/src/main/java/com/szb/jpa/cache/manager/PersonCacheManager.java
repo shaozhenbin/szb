@@ -2,6 +2,8 @@ package com.szb.jpa.cache.manager;
 
 import com.szb.jpa.domain.Person;
 
+import java.util.List;
+
 /**
  * @ClassName personCacheManager
  * @Description TODO
@@ -12,4 +14,8 @@ import com.szb.jpa.domain.Person;
 public interface PersonCacheManager {
 
     void cachePersonDetails(Person person);
+
+    Person getPerson(String code);
+
+    List<Person> getAllCachePerson();
 }
