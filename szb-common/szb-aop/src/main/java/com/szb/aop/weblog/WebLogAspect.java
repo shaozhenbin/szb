@@ -1,17 +1,13 @@
-package com.szb.aop;
+package com.szb.aop.weblog;
 
-import com.sun.xml.internal.ws.client.ResponseContext;
 import com.szb.utils.JsonUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.omg.CORBA.portable.ResponseHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +23,7 @@ public class WebLogAspect {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     /** 以自定义 @WebLog 注解为切点 */
-    @Pointcut("@annotation(com.szb.aop.WebLog)")
+    @Pointcut("@annotation(com.szb.aop.weblog.WebLog)")
 //    @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
     public void webLog() {}
 
@@ -39,7 +35,6 @@ public class WebLogAspect {
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         // 开始打印请求日志
-
         HttpServletRequest request = HttpUtils.getHttpServletRequest();
         // 获取 @WebLog 注解的描述信息
         String methodDescription = getAspectLogDescription(joinPoint);

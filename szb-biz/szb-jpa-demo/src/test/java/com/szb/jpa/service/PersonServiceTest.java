@@ -1,6 +1,7 @@
 package com.szb.jpa.service;
 
 import com.szb.jpa.config.AppConfig;
+import com.szb.jpa.domain.Address;
 import com.szb.jpa.domain.Person;
 import com.szb.utils.JsonUtil;
 import com.szb.utils.MDCUtil;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +34,23 @@ public class PersonServiceTest {
     public void save() {
 
         Person person = Person.builder()
-                .code("611")
-                .name("邵振斌")
+                .code("009")
+                .name("zhangbin")
                 .build();
+        person.setGroupBy("A/C/F");
+
+        Address address = Address.builder()
+                .city("茂名")
+                .person(person).build();
+        address.setGroupBy("A/C/F");
+
+        person.setAddress(address);
 
         personService.save(person);
     }
+
+
+
     @Test
     public void savePerson() throws InterruptedException {
         Person person = Person.builder()
@@ -60,7 +73,7 @@ public class PersonServiceTest {
 
     @Test
     public void getPerson() {
-        List<Person> list = personService.getPerson("309", "209");
+        List<Person> list = personService.getPerson();
         for (Person person : list) {
             log.debug("person--------> {}", JsonUtil.objectToJson(person));
         }
@@ -69,6 +82,14 @@ public class PersonServiceTest {
     @Test
     public void getAllCachePerson() {
         List<Person> list = personService.getAllCachePerson();
+        for (Person person : list) {
+            log.debug("person--------> {}", person.toString());
+        }
+    }
+
+    @Test
+    public void findAll() {
+        List<Person> list = personService.findAll();
         for (Person person : list) {
             log.debug("person--------> {}", person.toString());
         }

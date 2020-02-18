@@ -1,4 +1,4 @@
-package com.szb.aop;
+package com.szb.aop.weblog;
 
 import java.lang.annotation.*;
 

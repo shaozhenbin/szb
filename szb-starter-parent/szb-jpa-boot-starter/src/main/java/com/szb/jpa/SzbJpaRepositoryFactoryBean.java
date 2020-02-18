@@ -29,8 +29,10 @@ public class SzbJpaRepositoryFactoryBean<T extends JpaRepository<S, ID>, S, ID e
      */
     protected RepositoryFactorySupport createRepositoryFactory(
             EntityManager entityManager) {
+        SzbJpaRepositoryFactory szbJpaRepositoryFactory =  new SzbJpaRepositoryFactory(entityManager);
 
-        return new SzbJpaRepositoryFactory(entityManager);
+        szbJpaRepositoryFactory.addRepositoryProxyPostProcessor(new CustomRepositoryProxyPostProcessor());
+        return szbJpaRepositoryFactory;
     }
 }
 

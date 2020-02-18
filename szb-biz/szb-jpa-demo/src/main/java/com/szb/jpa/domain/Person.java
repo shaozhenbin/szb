@@ -1,14 +1,10 @@
 package com.szb.jpa.domain;
 
-import com.szb.jpa.async.event.PersonEvent;
+import com.szb.jpa.BaseEntity;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.domain.DomainEvents;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @ClassName Person
@@ -25,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Person extends BasicEntity implements Serializable {
+public class Person extends BaseEntity implements Serializable {
 
     @Column(name = "CODE", unique = true, nullable = false, length = 32)
     private String code;

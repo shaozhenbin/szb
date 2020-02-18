@@ -1,6 +1,6 @@
 package com.szb.jpa.controller;
 
-import com.szb.aop.WebLog;
+import com.szb.aop.weblog.WebLog;
 import com.szb.jpa.domain.Person;
 import com.szb.jpa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class PersonController {
 
     @GetMapping("/{code}")
     @WebLog(description = "获取单个用户信息")
-    public Person findByCode(@PathVariable("code") String code) {
+    Person findByCode(@PathVariable("code") String code) {
         log.debug("--------获取单个用户信息--------");
         return personService.findByCode(code);
     }

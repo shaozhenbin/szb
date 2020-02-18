@@ -3,7 +3,9 @@ package com.szb.jpa.service.impl;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sun.scenario.effect.impl.prism.ps.PPSBlend_ADDPeer;
+import com.szb.aop.executetime.ExecuteTime;
+import com.szb.jpa.BaseEntity;
+import com.szb.jpa.QBaseEntity;
 import com.szb.jpa.async.event.PersonEvent;
 import com.szb.jpa.async.predicate.PersonPredicate;
 import com.szb.jpa.cache.manager.PersonCacheManager;
@@ -12,6 +14,7 @@ import com.szb.jpa.domain.QPerson;
 import com.szb.jpa.repository.PersonRepository;
 import com.szb.jpa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.IterableUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,9 +51,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @ExecuteTime(description = "计算获取单个用户执行时间")
     public Person findByCode(String code) {
         QPerson person = QPerson.person;
         Person p = personCacheManager.getPerson(code);
+
         if(p == null) {
             p = personRepository.findOne(person.code.eq(code))
                     .orElse(null);
@@ -61,14 +66,24 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> getPerson(String... codes) {
         log.debug("-----------getPerson------------");
+//        QPerson person = QPerson.person;
+//        JPAQuery<Person> query = queryFactory.selectFrom(person);
+//        BooleanBuilder builder = new BooleanBuilder();
+//        for (String code : codes) {
+//            builder.or(person.code.eq(code));
+//        }
+//        query.where(builder);
+//        return query.fetch();
+
         QPerson person = QPerson.person;
-        JPAQuery<Person> query = queryFactory.selectFrom(person);
-        BooleanBuilder builder = new BooleanBuilder();
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
         for (String code : codes) {
-            builder.or(person.code.eq(code));
+            booleanBuilder.or(person.code.eq(code));
         }
-        query.where(builder);
-        return query.fetch();
+
+//        booleanBuilder.and(person.groupBy.contains("A"));
+
+        return IterableUtils.toList(personRepository.findAll(booleanBuilder));
     }
 
     @Override
@@ -92,9 +107,14 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    @ExecuteTime(description = "计算所有缓存用户执行时间")
     public List<Person> getAllCachePerson() {
         return personCacheManager.getAllCachePerson();
     }
 
+    @Override
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
 
 }

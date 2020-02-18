@@ -12,7 +12,7 @@
         </filter>
     </appender>
 
-    <logger name="com.szb.jpa" additivity="false" level="debug">
+    <logger name="com.szb" additivity="false" level="debug">
         <appender-ref ref="STDOUT"/>
     </logger>
 

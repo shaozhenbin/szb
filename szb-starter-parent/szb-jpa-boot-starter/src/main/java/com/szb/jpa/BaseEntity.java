@@ -1,7 +1,6 @@
-package com.szb.jpa.domain;
+package com.szb.jpa;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.szb.jpa.async.event.DomainEvent;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,12 +25,14 @@ import java.util.List;
 @Getter
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"domainEvents"})
-public class BasicEntity {
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(generator = "idGenerator")
     @GenericGenerator(name = "idGenerator", strategy = "uuid")
     private String id;
+
+    private String groupBy;
 
     @Transient
     private final List<DomainEvent> domainEvents = new ArrayList<>();

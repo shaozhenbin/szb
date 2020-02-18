@@ -10,7 +10,7 @@ public class SzbRedisProperties {
 
     private int port = 6379;
 	
-    private String host = "39.108.78.239";
+    private String host = "192.168.252.8";
     
     private int database = 0;
 

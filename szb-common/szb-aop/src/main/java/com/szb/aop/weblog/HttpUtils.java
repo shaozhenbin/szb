@@ -1,4 +1,4 @@
-package com.szb.aop;
+package com.szb.aop.weblog;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

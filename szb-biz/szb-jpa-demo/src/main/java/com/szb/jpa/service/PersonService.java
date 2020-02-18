@@ -15,4 +15,6 @@ public interface PersonService {
     void savePerson(Person person);
 
     List<Person> getAllCachePerson();
+
+    List<Person> findAll();
 }

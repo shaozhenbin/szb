@@ -2,10 +2,7 @@ package com.szb.jpa.config;
 
 import com.szb.jpa.SzbJpaRepositoryFactoryBean;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -30,6 +27,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"com.szb.*"})
 @PropertySource("classpath:application.properties")
 @EnableAsync
+@EnableAspectJAutoProxy //开启aop支持
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.szb.jpa.repository"},
     repositoryFactoryBeanClass = SzbJpaRepositoryFactoryBean.class)
@@ -58,7 +56,7 @@ public class AppConfig implements EnvironmentAware {
 //        jpaVendorAdapter.setGenerateDdl(true);
         jpaVendorAdapter.setShowSql(false);
         Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");//validate,create,create-drop
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "none");//validate,create,create-drop,update
         jpaProperties.setProperty("hibernate.format_sql", "true");
         jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();

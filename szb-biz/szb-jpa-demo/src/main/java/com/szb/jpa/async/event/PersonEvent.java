@@ -1,5 +1,6 @@
 package com.szb.jpa.async.event;
 
+import com.szb.jpa.DomainEvent;
 import com.szb.jpa.domain.Person;
 import lombok.*;
 

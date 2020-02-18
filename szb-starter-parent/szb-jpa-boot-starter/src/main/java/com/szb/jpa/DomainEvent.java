@@ -1,8 +1,6 @@
-package com.szb.jpa.async.event;
+package com.szb.jpa;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**

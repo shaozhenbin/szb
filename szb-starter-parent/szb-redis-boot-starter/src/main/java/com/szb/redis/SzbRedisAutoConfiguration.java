@@ -57,6 +57,8 @@ public class SzbRedisAutoConfiguration {
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
         objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
         valueSerializer.setObjectMapper(objectMapper);
 
