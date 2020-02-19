@@ -22,7 +22,7 @@ public class PersonServiceTest {
     @Test
     public void save() {
         Person person = Person.builder()
-                .code("007")
+                .code("009")
                 .name("szb666")
                 .email("123456@szb.com")
                 .build();
