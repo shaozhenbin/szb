@@ -1,11 +1,11 @@
 package com.szb.mongodb.service.impl;
 
-import com.szb.mongodb.domain.Address;
-import com.szb.mongodb.domain.Person;
 import com.szb.mongodb.domain.QPerson;
 import com.szb.mongodb.queryfactory.PersonQueryFactory;
 import com.szb.mongodb.repository.IPersonRepository;
 import com.szb.mongodb.service.PersonService;
+import com.szb.mongodb.domain.Address;
+import com.szb.mongodb.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;

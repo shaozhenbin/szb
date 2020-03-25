@@ -59,7 +59,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.BulkWriteOptions;
 import com.mongodb.client.model.InsertOneModel;
-import com.szb.mongodb.config.AppConfig;
+import AppConfig;
 import com.szb.mongodb.domain.Product;
 import com.szb.mongodb.domain.dto.Map2SkuDto;
 import com.szb.mongodb.mapper.DocumentMapper;

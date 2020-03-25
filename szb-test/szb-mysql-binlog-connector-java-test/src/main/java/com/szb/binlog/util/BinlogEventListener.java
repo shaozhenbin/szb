@@ -20,7 +20,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 
 import static com.github.phantomthief.scope.Scope.runWithNewScope;
-import static com.szb.binlog.model.BaseChangedRow.BinlogType.*;
 import static com.szb.binlog.util.BinlogUtils.toColumnType;
 import static java.lang.String.format;
 import static java.util.Collections.unmodifiableMap;
@@ -118,7 +117,7 @@ public class BinlogEventListener implements BinaryLogClient.EventListener {
                         if (!r.acceptTableName(insertedRow.getTableName())) {
                             return;
                         }
-                        if (!r.acceptType().contains(INSERT)) {
+                        if (!r.acceptType().contains(BaseChangedRow.BinlogType.INSERT)) {
                             return;
                         }
                         startUriRunning(
@@ -141,7 +140,7 @@ public class BinlogEventListener implements BinaryLogClient.EventListener {
                         if (!r.acceptTableName(deletedRow.getTableName())) {
                             return;
                         }
-                        if (!r.acceptType().contains(DELETE)) {
+                        if (!r.acceptType().contains(BaseChangedRow.BinlogType.DELETE)) {
                             return;
                         }
                         startUriRunning(
@@ -170,7 +169,7 @@ public class BinlogEventListener implements BinaryLogClient.EventListener {
                         if (!r.acceptTableName(updatedRow.getTableName())) {
                             return;
                         }
-                        if (!r.acceptType().contains(UPDATE)) {
+                        if (!r.acceptType().contains(BaseChangedRow.BinlogType.UPDATE)) {
                             return;
                         }
                         asyncRunResolver(r, () -> loggedRun(name, r, updatedRow));

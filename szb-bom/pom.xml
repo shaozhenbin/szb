@@ -46,6 +46,8 @@
         <commons-collections4.version>4.4</commons-collections4.version>
         <!-- servlet-api-->
         <servlet.version>4.0.1</servlet.version>
+        <thymeleaf.version>3.0.4.RELEASE</thymeleaf.version>
+        <spring-security-oauth2.version>2.4.0.RELEASE</spring-security-oauth2.version>
     </properties>
 
     <dependencyManagement>
@@ -165,6 +167,22 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 -->
+            <dependency>
+                <groupId>org.thymeleaf.extras</groupId>
+                <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+                <version>${thymeleaf.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth2.version}</version>
+            </dependency>
+
+
 
         </dependencies>
     </dependencyManagement>

@@ -1,5 +1,6 @@
 package com.szb.jpa.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.szb.jpa.BaseEntity;
 import lombok.*;
 
@@ -21,7 +22,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Person extends BaseEntity implements Serializable {
+public class Person extends BaseEntity<String> implements Serializable {
 
     @Column(name = "CODE", unique = true, nullable = false, length = 32)
     private String code;

@@ -1,10 +1,10 @@
 package com.szb.jpa.service;
 
-import com.szb.jpa.config.AppConfig;
 import com.szb.jpa.domain.Address;
 import com.szb.jpa.domain.Person;
-import com.szb.utils.JsonUtil;
 import com.szb.utils.MDCUtil;
+import com.szb.jpa.config.AppConfig;
+import com.szb.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,13 +33,13 @@ public class PersonServiceTest {
     public void save() {
 
         Person person = Person.builder()
-                .code("009")
-                .name("zhangbin")
+                .code("011")
+                .name("zhang")
                 .build();
         person.setGroupBy("A/C/F");
 
         Address address = Address.builder()
-                .city("茂名")
+                .city("广东")
                 .person(person).build();
         address.setGroupBy("A/C/F");
 

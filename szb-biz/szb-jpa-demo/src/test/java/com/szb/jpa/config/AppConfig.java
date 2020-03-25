@@ -56,7 +56,7 @@ public class AppConfig implements EnvironmentAware {
 //        jpaVendorAdapter.setGenerateDdl(true);
         jpaVendorAdapter.setShowSql(false);
         Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "none");//validate,create,create-drop,update
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");//validate,create,create-drop,update,none
         jpaProperties.setProperty("hibernate.format_sql", "true");
         jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();

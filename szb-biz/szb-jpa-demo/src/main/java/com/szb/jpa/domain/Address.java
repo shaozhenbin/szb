@@ -3,7 +3,6 @@ package com.szb.jpa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.szb.jpa.BaseEntity;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +22,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(value = {"person", "domainEvents"})
-public class Address extends BaseEntity implements Serializable {
+public class Address extends BaseEntity<String> implements Serializable {
 
 //    @Id
 //    @GeneratedValue(generator = "idGenerator")

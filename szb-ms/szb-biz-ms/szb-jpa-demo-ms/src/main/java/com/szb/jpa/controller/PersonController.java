@@ -1,5 +1,6 @@
 package com.szb.jpa.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.szb.aop.weblog.WebLog;
 import com.szb.jpa.domain.Person;
 import com.szb.jpa.service.PersonService;

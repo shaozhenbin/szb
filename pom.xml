@@ -15,6 +15,7 @@
         <module>szb-ms</module>
         <module>szb-test</module>
         <module>szb-common</module>
+        <module>szb-oauth</module>
     </modules>
 
     <distributionManagement>

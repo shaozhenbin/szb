@@ -1,12 +1,12 @@
 package com.szb.jpa.cache.manager.impl;
 
-import com.szb.jpa.cache.manager.PersonCacheManager;
+import com.szb.aop.cache.CacheException;
 import com.szb.jpa.domain.Person;
 import com.szb.redis.SzbRedisUtil;
+import com.szb.jpa.cache.manager.PersonCacheManager;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -29,12 +29,14 @@ public class PersonCacheManagerImpl implements PersonCacheManager {
     }
 
     @Override
+    @CacheException
     public void cachePersonDetails(Person person) {
         redisUtilPerson.putMap(TABLE_PERSON, PERSON + person.getCode(), person);
         redisUtilPerson.setExpire(TABLE_PERSON, 1, TimeUnit.DAYS);
     }
 
     @Override
+//    @CacheException
     public Person getPerson(String code) {
         return redisUtilPerson.getMapAsSingleEntry(TABLE_PERSON, PERSON + code);
     }

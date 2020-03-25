@@ -26,8 +26,6 @@ public class SzbRedisUtil<T> {
     private ListOperations<String,T> listOperation;
     private ValueOperations<String,T> valueOperations;
 
-
-
     @Autowired
     SzbRedisUtil(@Qualifier("szbRedisTemplate") RedisTemplate<String,T> redisTemplate){
         this.redisTemplate = redisTemplate;

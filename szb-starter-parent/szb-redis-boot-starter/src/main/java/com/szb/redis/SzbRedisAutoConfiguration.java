@@ -2,12 +2,9 @@ package com.szb.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +16,8 @@ import org.springframework.data.redis.connection.lettuce.LettuceClientConfigurat
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.*;
+
+import java.time.Duration;
 
 @Configuration
 @EnableConfigurationProperties({SzbRedisProperties.class})
@@ -32,10 +31,14 @@ public class SzbRedisAutoConfiguration {
         redisStandaloneConfiguration.setPort(szbRedisProperties.getPort());
         redisStandaloneConfiguration.setPassword(szbRedisProperties.getPassword());
 
-        LettuceClientConfiguration.LettuceClientConfigurationBuilder
-                lettuceClientConfigurationBuilder = LettuceClientConfiguration.builder();;
+        LettuceClientConfiguration lettuceClientConfiguration = LettuceClientConfiguration
+                .builder()
+                .commandTimeout(Duration.ofMillis(300))
+                .shutdownTimeout(Duration.ZERO)
+                .build();
+
         LettuceConnectionFactory factory = new LettuceConnectionFactory(redisStandaloneConfiguration,
-                lettuceClientConfigurationBuilder.build());
+                lettuceClientConfiguration);
         return factory;
     }
 
@@ -58,6 +61,7 @@ public class SzbRedisAutoConfiguration {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 
         objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
         valueSerializer.setObjectMapper(objectMapper);

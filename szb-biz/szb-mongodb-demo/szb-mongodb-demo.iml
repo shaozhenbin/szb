@@ -8,12 +8,12 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <content url="file://$MODULE_DIR$/../szb-mongodb-demo">
-      <sourceFolder url="file://$MODULE_DIR$/../szb-mongodb-demo/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../szb-mongodb-demo/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../szb-mongodb-demo/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../szb-mongodb-demo/target/generated-sources/java" isTestSource="false" generated="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../szb-mongodb-demo/target" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/java" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -48,6 +48,8 @@
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.9" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.18.2-GA" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:annotations:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.9" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.0.RELEASE" level="project" />

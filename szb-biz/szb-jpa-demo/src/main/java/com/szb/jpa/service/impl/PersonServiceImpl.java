@@ -1,16 +1,13 @@
 package com.szb.jpa.service.impl;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.szb.aop.executetime.ExecuteTime;
-import com.szb.jpa.BaseEntity;
-import com.szb.jpa.QBaseEntity;
 import com.szb.jpa.async.event.PersonEvent;
 import com.szb.jpa.async.predicate.PersonPredicate;
+import com.szb.jpa.domain.QPerson;
 import com.szb.jpa.cache.manager.PersonCacheManager;
 import com.szb.jpa.domain.Person;
-import com.szb.jpa.domain.QPerson;
 import com.szb.jpa.repository.PersonRepository;
 import com.szb.jpa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
@@ -59,6 +56,7 @@ public class PersonServiceImpl implements PersonService {
         if(p == null) {
             p = personRepository.findOne(person.code.eq(code))
                     .orElse(null);
+            personCacheManager.cachePersonDetails(p);
         }
         return p;
     }

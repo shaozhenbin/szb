@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.github.phantomthief.tuple.Tuple.tuple;
-import static com.szb.binlog.util.BinlogUtils.getTableColumns;
 import static java.util.Map.Entry;
 import static java.util.stream.Collectors.toSet;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
@@ -72,7 +71,7 @@ public final class BinlogCache {
         if (result != null) {
             return result;
         }
-        return tableInfoCache.computeIfAbsent(key, tuple -> getTableColumns(host, port,
+        return tableInfoCache.computeIfAbsent(key, tuple -> BinlogUtils.getTableColumns(host, port,
                 binlogUserName, binlogPassword, tuple.getFirst(), tuple.getSecond(), "joda"));
     }
 

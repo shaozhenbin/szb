@@ -33,8 +33,8 @@
 //import com.mongodb.client.model.UpdateOneModel;
 //import com.mongodb.client.model.UpdateOptions;
 //import com.mongodb.client.model.WriteModel;
-//import com.szb.mongodb.config.AppTestConfig;
-//import com.szb.mongodb.domain.Person;
+//import AppTestConfig;
+//import Person;
 //
 //import lombok.extern.slf4j.Slf4j;
 //
