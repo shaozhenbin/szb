@@ -32,6 +32,7 @@ public class SzbRedisUtil<T> {
         this.hashOperation = redisTemplate.opsForHash();
         this.listOperation = redisTemplate.opsForList();
         this.valueOperations = redisTemplate.opsForValue();
+
     }
 
     public void putMap(String redisKey,Object key,T data) {

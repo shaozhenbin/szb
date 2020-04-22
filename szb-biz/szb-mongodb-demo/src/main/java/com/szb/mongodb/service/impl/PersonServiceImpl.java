@@ -1,5 +1,6 @@
 package com.szb.mongodb.service.impl;
 
+import com.querydsl.core.BooleanBuilder;
 import com.szb.mongodb.domain.QPerson;
 import com.szb.mongodb.queryfactory.PersonQueryFactory;
 import com.szb.mongodb.repository.IPersonRepository;
@@ -43,7 +44,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Address> getAddress(String code) {
 
         QPerson person = QPerson.person;
-        Person p = personQueryFactory.selectFrom(person).where(person.code.eq(code))
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(person.code.eq(code));
+        Person p = personQueryFactory.selectFrom(person).where(booleanBuilder)
                 .fetchFirst(person.name, person.addressSet);
         log.debug("p ----------> {}", p.toString());
         return null;
@@ -58,10 +61,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person getPerson(String code) {
         QPerson person = QPerson.person;
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+        booleanBuilder.and(person.code.eq(code));
         return personQueryFactory
                 .selectFrom(person)
-                .where(person.code.eq(code))
-                .fetchFirst();
+                .where(booleanBuilder)
+                .fetchFirst(person.code, person.name);
     }
 
     @Override

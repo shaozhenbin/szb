@@ -1,6 +1,7 @@
 package com.szb.mongodb.service;
 
 import com.szb.mongodb.config.AppConfig;
+import com.szb.mongodb.config.AppTestConfig;
 import com.szb.mongodb.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppConfig.class})
+@ContextConfiguration(classes = {AppTestConfig.class})
 @Slf4j
 public class PersonServiceTest {
 
@@ -22,7 +23,7 @@ public class PersonServiceTest {
     @Test
     public void save() {
         Person person = Person.builder()
-                .code("009")
+                .code("001")
                 .name("szb666")
                 .email("123456@szb.com")
                 .build();

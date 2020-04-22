@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      host:192.168.252.8
+      host:39.108.78.239
       port:27017
       authenticationDatabase:admin
       database:test

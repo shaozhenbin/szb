@@ -10,11 +10,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @Date 2020/1/14 15:35
  * @Version 1.0
  **/
-@ConfigurationProperties("spring.szb.mongodb")
+@ConfigurationProperties("spring.mongodb")
 @Data
 public class MongodbProperties {
 
-    private String host = "39.108.78.239";
+    private String host = "192.168.252.8";
 
     private int port = 27017;
 
