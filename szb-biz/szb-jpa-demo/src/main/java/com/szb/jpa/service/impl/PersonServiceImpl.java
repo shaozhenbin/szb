@@ -53,7 +53,7 @@ public class PersonServiceImpl implements PersonService {
         QPerson person = QPerson.person;
         Person p = personCacheManager.getPerson(code);
 
-        if(p == null) {
+        if (p == null) {
             p = personRepository.findOne(person.code.eq(code))
                     .orElse(null);
             personCacheManager.cachePersonDetails(p);

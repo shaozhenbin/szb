@@ -2,6 +2,8 @@ package com.szb.jpa.service;
 
 import com.szb.jpa.domain.Address;
 import com.szb.jpa.domain.Person;
+import com.szb.jpa.dto.PersonDto;
+import com.szb.jpa.repository.PersonRepository;
 import com.szb.utils.MDCUtil;
 import com.szb.jpa.config.AppConfig;
 import com.szb.utils.JsonUtil;
@@ -13,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ClassName PersonServiceTest
@@ -28,6 +31,8 @@ public class PersonServiceTest {
 
     @Autowired
     private PersonService personService;
+    @Autowired
+    private PersonRepository personRepository;
 
     @Test
     public void save() {
@@ -49,7 +54,6 @@ public class PersonServiceTest {
     }
 
 
-
     @Test
     public void savePerson() throws InterruptedException {
         Person person = Person.builder()
@@ -66,7 +70,8 @@ public class PersonServiceTest {
 
     @Test
     public void findByCode() {
-        Person person = personService.findByCode("611");
+//        Person person = personService.findByCode("611");
+        PersonDto person = personRepository.findByCode("009");
         log.debug("person--------> {}", JsonUtil.objectToJson(person));
     }
 
@@ -94,4 +99,9 @@ public class PersonServiceTest {
         }
     }
 
+    @Test
+    public void findAll2() {
+        List<Person> list = personRepository.findAll();
+        log.debug("list ---------> {}", list.size());
+    }
 }

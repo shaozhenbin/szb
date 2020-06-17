@@ -30,7 +30,7 @@ import java.util.Properties;
 @EnableAspectJAutoProxy //开启aop支持
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.szb.jpa.repository"},
-    repositoryFactoryBeanClass = SzbJpaRepositoryFactoryBean.class)
+        repositoryFactoryBeanClass = SzbJpaRepositoryFactoryBean.class)
 public class AppConfig implements EnvironmentAware {
 
     private Environment environment;
